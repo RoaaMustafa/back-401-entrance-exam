@@ -3,6 +3,7 @@ const express = require('express') // require the express package
 const app = express() // initialize your express app instance
 const cors = require('cors');
 require('dotenv').config();
+app.use(cors()) ;
 const axios = require('axios'); // require the package
 app.use(express.json());
 const PORT=process.env.PORT||3002;
@@ -27,7 +28,7 @@ app.get('/',(req,res)=>{
 })
 
 const allDataHandler=async(req,res)=>{
-const url=('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+const url=('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
 await axios.get(url)
 .then((result)=>{
     res.send(result.data)
@@ -42,9 +43,9 @@ const addFavHandler =(req,res)=>{
          const newRandom =new randomModal({
             strDrink:strDrink,
             strInstructions:strInstructions,
-            strDrinkThumb:strDrinkThumb,
-         })
-         result.save()
+            strDrinkThumb:strDrinkThumb
+        })
+        newRandom.save()
         }
     })
 }
