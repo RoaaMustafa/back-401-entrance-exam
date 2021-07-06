@@ -33,7 +33,7 @@ class Home extends React.Component {
             strInstructions:this.state.dataArr[idx].strInstructions,
             strDrinkThumb:this.state.dataArr[idx].strDrinkThumb,
         }
-        await axios.Cancel.post(`${server}/addFav`,obj)
+        await axios.post(`${server}/addFav`,obj)
     }
 render(){
     return(
